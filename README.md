@@ -5,12 +5,12 @@ Contains:
 
 ## - Manual test cases (Tesla mobile + in-car UI)
   - [ 30 detailed test cases for Tesla mobile app & in-CAR login ](./manual-test-cases/MANUAL TESTS - QA.github.xlsx)
-- Postman API collection with automated tests
+## - Postman API collection with automated tests
 
-- Selenium Python UI automation suite
+## - Selenium Python UI automation suite
 
-- SQL queries for telemetry and anomaly validation
+##- SQL queries for telemetry and anomaly validation
 
-- End-to-end mini project with Flask + SQLite
+## - End-to-end mini project with Flask + SQLite
 
 Actively updated December 2025 
