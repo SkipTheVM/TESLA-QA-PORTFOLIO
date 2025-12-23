@@ -4,8 +4,8 @@ Entry-Level Software QA portfolio for Tesla - manual tests, Postman API, Seleniu
 Contains:
 
 ## - Manual test cases (Tesla mobile + in-car UI)
-  - [ 30 detailed test cases for Tesla mobile app & in-CAR login ] 
-  - (manual-test-cases/MANUAL TESTS - QA.github.xlsx)
+  - [30 detailed test cases for Tesla mobile app & in-CAR login](manual-test-cases/manual-test-cases-github.xlsx)
+  
 ## - Postman API collection with automated tests
 
 ## - Selenium Python UI automation suite
