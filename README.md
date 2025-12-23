@@ -5,7 +5,9 @@ Contains:
 
 ## - Manual test cases (Tesla mobile + in-car UI)
   - [30 detailed test cases for Tesla mobile app & in-CAR login](manual-test-cases/manual-test-cases-github.xlsx)
+  
   - [Preview of the 30 detailed test cases](manual-test-cases/manual-test-cases-preview.png)
+  
 ## - Postman API collection with automated tests
 
 ## - Selenium Python UI automation suite
