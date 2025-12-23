@@ -9,7 +9,7 @@ Contains:
 
 ## - Selenium Python UI automation suite
 
-##- SQL queries for telemetry and anomaly validation
+## - SQL queries for telemetry and anomaly validation
 
 ## - End-to-end mini project with Flask + SQLite
 
