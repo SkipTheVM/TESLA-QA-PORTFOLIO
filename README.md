@@ -8,7 +8,7 @@ Contains:
   - [Preview of the 30 detailed test cases](manual-test-cases/manual-test-cases-preview.png)
   
 ## - Postman API collection with automated tests
-  Simulates vehicle telemetry endpoints ( GET status, POST data, PUT config, DELETE logs ) using public mock API's, with JavaScript tests for status codes, response time, JSON schema, and specific fields.
+      Simulates vehicle telemetry endpoints ( GET status, POST data, PUT config, DELETE logs ) using public mock API's, with JavaScript tests for status codes, response time, JSON schema, and specific fields.
   - [Tesla Vehicle API Test collection - 8 API requests with automated assertions](api-tests-postman/Tesla_Vehicle_API_Test.postman_collection.json)
   - [Preview of the test collection results](api-tests-postman/Postman-runner-result-preview.png)
 
