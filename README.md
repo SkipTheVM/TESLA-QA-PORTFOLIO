@@ -20,6 +20,8 @@ Contains:
   - [Preview of the combined results (console output + browser state on Tesla login page + python code)](selenium-python-automation/selenium-results-preview.png)
 
 ## - SQL queries for telemetry and anomaly validation
+  Covers battery anomalies, Autopilot events, GPS latency, overheating, range mismatch, phontom drains and more. 
+  - [10 SQL queries for validating Tesla vehicle telemetry and anomaly detection](sql-validation-queries/tesla_telemetry_validation.sql)
 
 ## - End-to-end mini project with Flask + SQLite
 
