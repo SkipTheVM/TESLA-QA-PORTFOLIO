@@ -9,7 +9,7 @@ Contains:
   
 ## - Postman API collection with automated tests
   - [Tesla Vehicle API Test collection - 8 API requests with automated assertions](api-tests-postman/Tesla_Vehicle_API_Test.postman_collection.json)
-  - [Preview of the test collection results](
+  - [Preview of the test collection results](api-tests-postman/Postman-runner-result-preview.png)
 
 ## - Selenium Python UI automation suite
 
