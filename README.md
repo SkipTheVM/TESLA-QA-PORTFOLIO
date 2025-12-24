@@ -9,6 +9,7 @@ Contains:
   - [Preview of the 30 detailed test cases](manual-test-cases/manual-test-cases-preview.png)
   
 ## - Postman API collection with automated tests
+  - [Tesla Vehicle API Test collection - 8 requests with automated assertions](
 
 ## - Selenium Python UI automation suite
 
