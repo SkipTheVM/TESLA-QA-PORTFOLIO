@@ -1,0 +1,331 @@
+{
+	"info": {
+		"_postman_id": "3bee6ef2-7947-4b36-b1dd-984fd41d89d6",
+		"name": "Tesla Vehicle API Test",
+		"description": "Automated tests for vehicle telemetry endpoints ( mocked using public API ) ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50995101",
+		"_collection_link": "https://skipthevm-6405037.postman.co/workspace/6a532ecd-55bb-4ac5-8f46-3a27bdeb6b46/collection/50995101-3bee6ef2-7947-4b36-b1dd-984fd41d89d6?action=share&source=collection_link&creator=50995101"
+	},
+	"item": [
+		{
+			"name": "GET ALL vehicles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+							"pm.test(\"Response time is less than 500ms\", function () { pm.expect(pm.response.responseTime).to.be.below(500); });\r",
+							"pm.test(\"Response is JSON\", function () {pm.response.to.be.json; });\r",
+							"pm.test(\"Returns array of 10 Users\", function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.be.an('array'); pm.expect(jsonData.length).to.equal(10); });"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET single vehicle status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+							"pm.test(\"Response time is less than 500ms\", function () { pm.expect(pm.response.responseTime).to.be.below(500); });\r",
+							"pm.test(\"Response is JSON\", function () {pm.response.to.be.json; });\r",
+							"pm.test(\"User ID is 1\", function () { pm.expect(JSON.parse(pm.response.text()).id).to.equal(1); });\r",
+							"pm.test(\"Name is correct\", function (){ var jsonData = pm.response.json(); pm.expect(jsonData.name).to.equal(\"Leanne Graham\");  });"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/users/1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SEND telemetry data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () { pm.response.to.have.status(201); });\r",
+							"pm.test(\"Response time is less than 500ms\", function () { pm.expect(pm.response.responseTime).to.be.below(500); });\r",
+							"pm.test(\"Response is JSON\", function () {pm.response.to.be.json; });\r",
+							"pm.test(\"Returned ID is an integer > 100\", function () { var jsonData = pm.response.json(); pm.expect(jsonData.id).to.be.an('number').and.to.be.above(100); });"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/posts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE vehicle config",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+							"pm.test(\"Response time is less than 500ms\", function () { pm.expect(pm.response.responseTime).to.be.below(500); });\r",
+							"pm.test(\"Response is JSON\", function () {pm.response.to.be.json; });\r",
+							"pm.test(\"Updated ID is 1\", function () { var jsonData = pm.response.json(); pm.expect(jsonData.id).to.eql(1); });"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/posts/1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CLEAR log entry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+							"pm.test(\"Response time is less than 500ms\", function () { pm.expect(pm.response.responseTime).to.be.below(500); });\r",
+							"pm.test(\"Response is JSON\", function () {pm.response.to.be.json; });\r",
+							"pm.test(\"Response body is an empty object\", function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.be.empty});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/posts/1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INVALID endpoint ( 404 simulation )",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404 - Not Found\", function () { pm.response.to.have.status(404); });\r",
+							"pm.test(\"Response time is less than 500ms\", function () { pm.expect(pm.response.responseTime).to.be.below(500); });\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/invalid",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"invalid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INVALID AUTH ( 401 simulation )",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401 - Unauthorized\", function () { pm.response.to.have.status(401);});\r",
+							"pm.test(\"Response time is less than 500ms\", function () { pm.expect(pm.response.responseTime).to.be.below(500); });\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "401 Simulation",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://httpbin.org/bearer",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"bearer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VALID AUTH ( 200 simulation )",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 - Successful\", function () { pm.response.to.have.status(200); });\r",
+							"pm.test(\"Response time is less than 500ms\", function () { pm.expect(pm.response.responseTime).to.be.below(500); });\r",
+							"pm.test(\"Response is JSON\", function () { pm.response.to.be.json; });\r",
+							"pm.test(\"Response body contains 'ELON'\", function () { pm.expect(pm.response.text()).to.include('ELON'); });"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ELON",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://httpbin.org/bearer",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"bearer"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": ""
+		}
+	]
+}
