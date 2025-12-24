@@ -15,6 +15,9 @@ Contains:
   - [Preview of the test collection results](api-tests-postman/Postman-runner-result-preview.png)
 
 ## - Selenium Python UI automation suite
+  Python script that uses the exact ID's ( 'form-input-identity' & 'form-submit-continue' ) from manually inspecting the Tesla signin page. Handles multi-step login flow ( email -> Next -> password ).
+  - [Selenium Python script with 5 UI tests for Tesla account login using inspected element ID's](selenium-python-automation/test_tesla_login.py)
+  - [Preview of the combined results (console output + browser state on Tesla login page + python code)](selenium-python-automation/selenium-results-preview.png)
 
 ## - SQL queries for telemetry and anomaly validation
 
