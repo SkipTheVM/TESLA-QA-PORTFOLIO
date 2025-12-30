@@ -24,5 +24,9 @@ Contains:
   - [10 SQL queries for validating Tesla vehicle telemetry and anomaly detection](sql-validation-queries/tesla_telemetry_validation.sql)
 
 ## - End-to-end mini project with Flask + SQLite
+  Full-stack vehicle task tracker. Add tasks via UI -> save to DB -> list on page with LIVE refresh. Runs locally at http://127.0.0.1:5000. Target for full QA testing (manual, Postman, Selenium, SQL).
+  - [Backend (Flask API + SQLite DB)](end-to-end-mini-project/app.py)
+  - [Frontend UI (HTML + JavaScript](end-to-end-mini-project/templates/index.html)
+  - [Preview of running app with tasks added](end-to-end-mini-project/mini-app-preview.png)
 
 Actively updated December 2025 
