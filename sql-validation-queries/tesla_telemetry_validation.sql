@@ -1,6 +1,6 @@
 -- 1. Find trips with battery drop >50% in <10 minutes (potential anomaly)
 -- Why: Detects potential battery faults, software bugs in energy estimation, or sensor errors.
---   ~: A healthy battery shouldn't drop this fast. Could indicate a safetyissue or bad firmware calibration. 
+--   ~: A healthy battery shouldn't drop this fast. Could indicate a safety issue or bad firmware calibration. 
 	SELECT trip_id, vehicle_id, battery_start, battery_end, duration_min
 	FROM trips
 	WHERE (battery_start - battery_end) > 50 AND duration_min < 10;
