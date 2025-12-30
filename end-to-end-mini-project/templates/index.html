@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset="UTF-8">
+<title> TODO LIST created by: Jakin </title>
+<style>
+body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; }
+input { padding: 10px; width: 70%; }
+button { padding: 10px; }
+ul { list-style: none; padding: 0; }
+li { padding: 10px; background: #f0f0f0; margin: 5px 0; }
+</style>
+</head>
+<body>
+<h1>Tesla QA Mini App - Vehicle Task Tracker</h1>
+<p> Add tasks ( simulates vehicle maintenance notes ) </p>
+<input type="text" id="taskInput" placeholder="i.e., Check Tire Pressure">
+<button id="addButton">Add Task</button>
+<ul id="todoList"></ul>
+
+<script>
+function loadTodos() {
+       fetch('/todos')
+           .then(response => {
+               if (!response.ok) throw new Error('HTTP ' + response.status);
+               return response.json();
+           })
+           .then(todos => {
+               console.log("Loaded todos:", todos);  // Check in browser console
+               const list = document.getElementById('todoList');
+               list.innerHTML = '';
+               todos.forEach(todo => {
+                   const li = document.createElement('li');
+                   li.textContent = todo.task + (todo.done ? ' (done)' : '');
+                   list.appendChild(li);
+               });
+           })
+           .catch(err => {
+               console.error("Error loading todos:", err);
+               document.getElementById('todoList').innerHTML = '<li style="color:red;">Error loading tasks</li>';
+           });
+   }
+   function addTodo() {
+       const taskInput = document.getElementById('taskInput');
+       const task = taskInput.value.trim();
+       if (!task) {
+           alert("Please enter a task");
+           return;
+       }
+       fetch('/todos', {
+           method: 'POST',
+           headers: { 'Content-Type': 'application/json' },
+           body: JSON.stringify({ task: task })
+       })
+       .then(response => {
+           if (!response.ok) throw new Error('HTTP ' + response.status);
+           return response.json();
+       })
+       .then(data => {
+           console.log("Add response:", data);
+           taskInput.value = '';
+           loadTodos();  // Refresh list
+       })
+       .catch(err => {
+           console.error("Error adding todo:", err);
+           alert("Failed to add task");
+       });
+   }
+   // Load when page opens
+   loadTodos();
+   // Attach the Add Button Click ONLY after DOM is ready
+   document.addEventListener('DOMContentLoaded', function() { 
+		const addButton = document.getElementById('addButton');
+   if (addButton) {
+		addButton.addEventListener('click', addTodo);
+		} else {
+			console.error("add button not found - check id='addButton'");
+			}
+		}); 
+</script>
+</body>
+</html>
