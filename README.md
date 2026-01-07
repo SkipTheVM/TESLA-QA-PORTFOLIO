@@ -23,11 +23,13 @@ Contains:
   Covers battery anomalies, Autopilot events, GPS latency, overheating, range mismatch, phontom drains and more. 
   - [10 SQL queries for validating Tesla vehicle telemetry and anomaly detection](sql-validation-queries/tesla_telemetry_validation.sql)
 
-## - End-to-end mini project with Flask + SQLite
+## - End-to-End Mini-App project with Flask + SQLite
   Full-stack vehicle task tracker. Add tasks via UI -> save to DB -> list on page with LIVE refresh. Runs locally at http://127.0.0.1:5000.
   Target for full QA testing (manual, Postman, Selenium, SQL).
   - [Backend (Flask API + SQLite DB)](end-to-end-mini-project/app.py)
   - [Frontend UI (HTML + JavaScript)](end-to-end-mini-project/templates/index.html)
   - [Preview of running app with tasks added](end-to-end-mini-project/mini-app-preview.png)
-
-Actively updated December 2025 
+    ### - QA Testing on created Mini-App
+      - [Manual test cases (20 detailed scenarios, all PASSED)](end-to-end-mini-project/tests/manual/mini_app_manual_tests.xlsx)
+      - [Preview of test sheet](end-to-end-mini-project/tests/manual/mini-app-manual-tests-preview.png)
+Actively updated -  January 2026
