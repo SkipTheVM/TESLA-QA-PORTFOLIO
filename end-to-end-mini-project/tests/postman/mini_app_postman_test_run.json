@@ -1,0 +1,372 @@
+{
+	"id": "1da0ccb5-9e6b-4ff7-811c-76fa15624ba1",
+	"name": "Tesla QA Mini-App API Tests",
+	"timestamp": "2026-01-07T13:21:53.784Z",
+	"collection_id": "50995101-c2d76373-e417-4bd7-b681-f171712da915",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 25,
+	"delay": "1000",
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2026-01-07T13:21:44.485Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "c9568b77-e9e5-4569-858a-f7f0bce039e5",
+			"name": "GET ROOT Page",
+			"url": "http://127.0.0.1:5000/",
+			"time": 10,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is HTML (content type contains text/html)": true,
+				"Page contains app title": true,
+				"Page contains input field": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is HTML (content type contains text/html)": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Page contains app title": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Page contains input field": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is HTML (content type contains text/html)": true,
+					"Page contains app title": true,
+					"Page contains input field": true
+				}
+			]
+		},
+		{
+			"id": "8f944a3d-e2b4-4b20-adf9-0834e152e0cc",
+			"name": "GET Empty Page",
+			"url": "http://127.0.0.1:5000/todos",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is JSON": true,
+				"Response is empty array": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is empty array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is JSON": true,
+					"Response is empty array": true
+				}
+			]
+		},
+		{
+			"id": "17bb181b-d07e-4f64-9996-96a48d5a6f8e",
+			"name": "ADD Valid Task",
+			"url": "http://127.0.0.1:5000/todos",
+			"time": 16,
+			"responseCode": {
+				"code": 201,
+				"name": "CREATED"
+			},
+			"tests": {
+				"Status code is 201 or 200": true,
+				"Response is JSON": true,
+				"Response time under 1000ms": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201 or 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time under 1000ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Status code is 201 or 200": true,
+					"Response is JSON": true,
+					"Response time under 1000ms": true
+				}
+			]
+		},
+		{
+			"id": "809ba19f-8b4b-47ee-93af-3037d51ee56c",
+			"name": "GET List after ADD",
+			"url": "http://127.0.0.1:5000/todos",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is JSON array": true,
+				"Array has at least 1 item": true,
+				"Contains the added task": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is JSON array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Array has at least 1 item": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Contains the added task": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is JSON array": true,
+					"Array has at least 1 item": true,
+					"Contains the added task": true
+				}
+			]
+		},
+		{
+			"id": "d9a6b5d3-97a5-47e8-bfe1-f019f1352cb5",
+			"name": "ADD Empty Task",
+			"url": "http://127.0.0.1:5000/todos",
+			"time": 5,
+			"responseCode": {
+				"code": 400,
+				"name": "BAD REQUEST"
+			},
+			"tests": {
+				"Status code is 400 or 500 (error expected)": true,
+				"Response is JSON": true,
+				"Error message mentions task": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400 or 500 (error expected)": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Error message mentions task": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 400 or 500 (error expected)": true,
+					"Response is JSON": true,
+					"Error message mentions task": true
+				}
+			]
+		},
+		{
+			"id": "ccb0da6c-c990-49f4-a7d0-f7dfb917afc4",
+			"name": "MISSING Task Key",
+			"url": "http://127.0.0.1:5000/todos",
+			"time": 5,
+			"responseCode": {
+				"code": 400,
+				"name": "BAD REQUEST"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"Response is JSON": true,
+				"Error mentions missing task": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Error mentions missing task": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"Response is JSON": true,
+					"Error mentions missing task": true
+				}
+			]
+		},
+		{
+			"id": "01e1c8c8-cd17-4dec-824b-ce43db31f4bf",
+			"name": "INVALID JSON",
+			"url": "http://127.0.0.1:5000/todos",
+			"time": 5,
+			"responseCode": {
+				"code": 415,
+				"name": "UNSUPPORTED MEDIA TYPE"
+			},
+			"tests": {
+				"Status code is 415": true,
+				"Response is HTML error page (not JSON)": true
+			},
+			"testPassFailCounts": {
+				"Status code is 415": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is HTML error page (not JSON)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 415": true,
+					"Response is HTML error page (not JSON)": true
+				}
+			]
+		},
+		{
+			"id": "3869661d-6ff6-49ca-abf4-2134021b8715",
+			"name": "Non-existent Endpoint",
+			"url": "http://127.0.0.1:5000/invalid",
+			"time": 4,
+			"responseCode": {
+				"code": 404,
+				"name": "NOT FOUND"
+			},
+			"tests": {
+				"Status code is 404": true,
+				"Response is HTML error page": true,
+				"Page contains 'Not Found' text": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is HTML error page": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Page contains 'Not Found' text": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 404": true,
+					"Response is HTML error page": true,
+					"Page contains 'Not Found' text": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 55,
+	"collection": {
+		"requests": [
+			{
+				"id": "c9568b77-e9e5-4569-858a-f7f0bce039e5",
+				"method": "GET"
+			},
+			{
+				"id": "8f944a3d-e2b4-4b20-adf9-0834e152e0cc",
+				"method": "GET"
+			},
+			{
+				"id": "17bb181b-d07e-4f64-9996-96a48d5a6f8e",
+				"method": "POST"
+			},
+			{
+				"id": "809ba19f-8b4b-47ee-93af-3037d51ee56c",
+				"method": "GET"
+			},
+			{
+				"id": "d9a6b5d3-97a5-47e8-bfe1-f019f1352cb5",
+				"method": "POST"
+			},
+			{
+				"id": "ccb0da6c-c990-49f4-a7d0-f7dfb917afc4",
+				"method": "POST"
+			},
+			{
+				"id": "01e1c8c8-cd17-4dec-824b-ce43db31f4bf",
+				"method": "POST"
+			},
+			{
+				"id": "3869661d-6ff6-49ca-abf4-2134021b8715",
+				"method": "GET"
+			}
+		]
+	}
+}
