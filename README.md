@@ -32,4 +32,5 @@ Contains:
     ### - QA Testing on created Mini-App
       - [Manual test cases (20 detailed scenarios, all PASSED)](end-to-end-mini-project/tests/manual/mini_app_manual_tests.xlsx)
       - [Preview of test sheet](end-to-end-mini-project/tests/manual/mini-app-manual-tests-preview.png)
+        
 Actively updated -  January 2026
