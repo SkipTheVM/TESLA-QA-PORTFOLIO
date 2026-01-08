@@ -34,5 +34,7 @@ Contains:
       - [Preview of manual test sheet](end-to-end-mini-project/tests/manual/mini-app-manual-tests-preview.png)
       - [Postman API test collection - 8 requests with assertions](end-to-end-mini-project/tests/postman/mini_app_postman_test_run.json)
       - [Preview of API test collection results](end-to-end-mini-project/tests/postman/mini-app-api-test-preview.png)
+      - [Selenium UI automation script ( adds 3 tasks, asserts, visibility and persistence )](end-to-end-mini-project/tests/selenium/test_mini_app_UI.py)
+      - [Preview of Selenium tests results](end-to-end-mini-project/tests/selenium/selenium_mini_app_UI_preview.png)
         
 Actively updated -  January 2026
