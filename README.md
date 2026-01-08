@@ -36,5 +36,7 @@ Contains:
       - [Preview of API test collection results](end-to-end-mini-project/tests/postman/mini-app-api-test-preview.png)
       - [Selenium UI automation script ( adds 3 tasks, asserts, visibility and persistence )](end-to-end-mini-project/tests/selenium/test_mini_app_UI.py)
       - [Preview of Selenium tests results](end-to-end-mini-project/tests/selenium/selenium_mini_app_UI_preview.png)
+      - [SQL validation queries on database created from Mini-App](end-to-end-mini-project/tests/sql/SQL_validation_results.py)
+      - [Preview of SQL validation results ( executed via Python in CMD )](end-to-end-mini-project/tests/sql/mini_app_sql_validation.png)
         
-Actively updated -  January 2026
+Updating Completed: -  January 2026
