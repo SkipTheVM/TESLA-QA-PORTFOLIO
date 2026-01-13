@@ -25,29 +25,27 @@ Contains:
   - [10 SQL queries for validating Tesla vehicle telemetry and anomaly detection](sql-validation-queries/tesla_telemetry_validation.sql)
 
 ## - !! End-to-End Mini-App project with Flask + SQLite !!
-  Full-stack vehicle task tracker. Add tasks via UI -> save to DB -> list on page with LIVE refresh. Runs locally at http://127.0.0.1:5000.
+  Vehicle task tracker. Add tasks via UI -> save to DB -> list on page with LIVE refresh. Runs locally at http://127.0.0.1:5000.
   Target for full QA testing (manual, Postman, Selenium, SQL).
   - [Backend (Flask API + SQLite DB)](end-to-end-mini-project/app.py)
   - [Frontend UI (HTML + JavaScript)](end-to-end-mini-project/templates/index.html)
   - [Preview of running app with tasks added](end-to-end-mini-project/mini-app-preview.png)
 
 ## - QA Testing on created Mini-App
--
-       [Manual test cases (20 detailed scenarios, all PASSED)](end-to-end-mini-project/tests/manual/mini_app_manual_tests.xlsx)
-      - [Preview of manual test sheet](end-to-end-mini-project/tests/manual/mini-app-manual-tests-preview.png)
-      - [Postman API test collection - 8 requests with assertions](end-to-end-mini-project/tests/postman/mini_app_postman_test_run.json)
-      - [Preview of API test collection results](end-to-end-mini-project/tests/postman/mini-app-api-test-preview.png)
-      - [Selenium UI automation script ( adds 3 tasks, asserts, visibility and persistence )](end-to-end-mini-project/tests/selenium/test_mini_app_UI.py)
-      - [Preview of Selenium tests results](end-to-end-mini-project/tests/selenium/selenium_mini_app_UI_preview.png)
-      - [SQL validation queries on database created from Mini-App](end-to-end-mini-project/tests/sql/SQL_validation_results.py)
-      - [Preview of SQL validation results ( executed via Python in CMD )](end-to-end-mini-project/tests/sql/mini_app_sql_validation.png)
+- [Manual test cases (20 detailed scenarios, all PASSED)](end-to-end-mini-project/tests/manual/mini_app_manual_tests.xlsx)
+- [Preview of manual test sheet](end-to-end-mini-project/tests/manual/mini-app-manual-tests-preview.png)
+- [Postman API test collection - 8 requests with assertions](end-to-end-mini-project/tests/postman/mini_app_postman_test_run.json)
+- [Preview of API test collection results](end-to-end-mini-project/tests/postman/mini-app-api-test-preview.png)
+- [Selenium UI automation script ( adds 3 tasks, asserts, visibility and persistence )](end-to-end-mini-project/tests/selenium/test_mini_app_UI.py)
+- [Preview of Selenium tests results](end-to-end-mini-project/tests/selenium/selenium_mini_app_UI_preview.png)
+- [SQL validation queries on database created from Mini-App](end-to-end-mini-project/tests/sql/SQL_validation_results.py)
+- [Preview of SQL validation results ( executed via Python in CMD )](end-to-end-mini-project/tests/sql/mini_app_sql_validation.png)
 
 ## - Live QA Dashboard ( using the Mini-App )
--
-      Full-stack dashboard (Flask + SocketIO) that runs all test suites with one click. Features live console streaming, run history, and DB logging of results.
-      One-click to launch real Selenium UI automation: opens Chrome, adds tasks, asserts visibility/persistence, streams full output live
-      - [Dashboard app (Flask + SocketIO)](qa-dashboard/dashboard.py)
-      - [Dashboard frontend (HTML + Tailwind + SocketIO client)](qa-dashboard/templates/index.html)
-      - [Screenshot of dashboard running Selenium tests](qa-dashboard/Dashboard_Selenium_Preview.png)
+Full-stack dashboard (Flask + SocketIO) that runs all test suites with one click. Features live console streaming, run history, and DB logging of results.
+One-click to launch real Selenium UI automation: opens Chrome, adds tasks, asserts visibility/persistence, streams full output live
+- [Dashboard app (Flask + SocketIO)](qa-dashboard/dashboard.py)
+- [Dashboard frontend (HTML + Tailwind + SocketIO client)](qa-dashboard/templates/index.html)
+- [Screenshot of dashboard running Selenium tests](qa-dashboard/Dashboard_Selenium_Preview.png)
 
 Actively Updated: - January 2026
