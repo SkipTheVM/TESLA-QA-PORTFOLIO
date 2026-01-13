@@ -31,7 +31,7 @@ Contains:
   - [Backend (Flask API + SQLite DB)](end-to-end-mini-project/app.py)
   - [Frontend UI (HTML + JavaScript)](end-to-end-mini-project/templates/index.html)
   - [Preview of running app with tasks added](end-to-end-mini-project/mini-app-preview.png)
-# - QA Testing on created Mini-App
+### - QA Testing on created Mini-App
       - [Manual test cases (20 detailed scenarios, all PASSED)](end-to-end-mini-project/tests/manual/mini_app_manual_tests.xlsx)
       - [Preview of manual test sheet](end-to-end-mini-project/tests/manual/mini-app-manual-tests-preview.png)
       - [Postman API test collection - 8 requests with assertions](end-to-end-mini-project/tests/postman/mini_app_postman_test_run.json)
@@ -41,7 +41,7 @@ Contains:
       - [SQL validation queries on database created from Mini-App](end-to-end-mini-project/tests/sql/SQL_validation_results.py)
       - [Preview of SQL validation results ( executed via Python in CMD )](end-to-end-mini-project/tests/sql/mini_app_sql_validation.png)
 
-# - Live QA Dashboard ( using the Mini-App ) 
+### - Live QA Dashboard ( using the Mini-App ) 
       Full-stack dashboard (Flask + SocketIO) that runs all test suites with one click. Features live console streaming, run history, and DB logging of results.
       One-click to launch real Selenium UI automation: opens Chrome, adds tasks, asserts visibility/persistence, streams full output live.
       - [Dashboard app (Flask + SocketIO)](qa-dashboard/dashboard.py)
