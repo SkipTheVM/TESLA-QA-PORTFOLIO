@@ -1,0 +1,134 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jakin's Dashboard</title>
+    <!-- Tailwind CSS CDN (playground version - perfect for local dev) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tesla: '#CC0000', // Tesla red
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <style>
+        #console {
+            font-family: 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #00ff00;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <div class="max-w-6xl mx-auto p-8">
+        <h1 class="text-5xl font-bold text-center mb-4 text-tesla">Jakin's Dashboard</h1>
+        <p class="text-center text-xl mb-10 text-gray-400">One-click test execution with live streaming console and history</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <button onclick="runSuite('selenium')" class="bg-tesla hover:bg-red-700 text-white font-bold py-6 px-8 rounded-lg text-2xl shadow-lg transform hover:scale-105 transition">
+                Run Selenium UI Tests
+            </button>
+            <button onclick="runSuite('postman')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-6 px-8 rounded-lg text-2xl shadow-lg transform hover:scale-105 transition">
+                Run Postman API Tests
+            </button>
+            <button onclick="runSuite('sql')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-6 px-8 rounded-lg text-2xl shadow-lg transform hover:scale-105 transition">
+                Run SQL Validation
+            </button>
+        </div>
+
+        <h2 class="text-3xl font-semibold mb-4">Live Console Output</h2>
+        <pre id="console" class="h-96 overflow-y-auto p-6 rounded-lg shadow-inner mb-12"></pre>
+
+        <h2 class="text-3xl font-semibold mb-4">Test Run History</h2>
+        <div class="bg-gray-800 rounded-lg shadow overflow-hidden">
+            <table class="w-full">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="px-6 py-4 text-left">ID</th>
+                        <th class="px-6 py-4 text-left">Time</th>
+                        <th class="px-6 py-4 text-left">Suite</th>
+                        <th class="px-6 py-4 text-left">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="history" class="divide-y divide-gray-700"></tbody>
+            </table>
+        </div>
+    </div>
+
+<script>
+    const socket = io();
+    
+    // Use more reliable selectors
+    const consoleEl = document.getElementById('console');
+    const historyBody = document.querySelector('#history tbody');
+    
+    // Safety check
+    if (!consoleEl) console.error("Console element not found!");
+    if (!historyBody) console.error("History table body not found!");
+    
+    function runSuite(suite) {
+        if (consoleEl) {
+            consoleEl.innerHTML = `<span class="text-yellow-400">>>> Starting ${suite.toUpperCase()} tests...</span>\n\n`;
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+        socket.emit('run_suite', {suite: suite});
+    }
+    
+    socket.on('run_started', data => {
+        if (consoleEl) {
+            consoleEl.innerHTML += `<span class="text-cyan-400">>>> Running ${data.suite} tests...</span>\n\n`;
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+    });
+    
+    socket.on('log_update', data => {
+        if (consoleEl) {
+            consoleEl.innerHTML += data.line;
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+    });
+    
+    socket.on('run_complete', data => {
+        if (consoleEl) {
+            const color = data.status === 'PASSED' ? 'text-green-400' : 'text-red-400';
+            consoleEl.innerHTML += `\n<span class="${color} font-bold">*** ${data.suite.toUpperCase()} ${data.status} ***</span>\n\n`;
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+        loadHistory();
+    });
+    
+    function loadHistory() {
+        fetch('/history')
+            .then(r => r.json())
+            .then(runs => {
+                if (historyBody) {
+                    historyBody.innerHTML = '';
+                    runs.forEach(run => {
+                        const tr = document.createElement('tr');
+                        tr.className = 'hover:bg-gray-700';
+                        const statusColor = run.status === 'PASSED' ? 'text-green-400' : 'text-red-400';
+                        tr.innerHTML = `
+                            <td class="px-6 py-4">${run.id}</td>
+                            <td class="px-6 py-4">${run.time}</td>
+                            <td class="px-6 py-4">${run.suite}</td>
+                            <td class="px-6 py-4 ${statusColor} font-bold">${run.status}</td>
+                        `;
+                        historyBody.appendChild(tr);
+                    });
+                }
+            })
+            .catch(err => console.error("History load error:", err));
+    }
+    
+    // Load history on page load
+    loadHistory();
+</script>
+</body>
+</html>
