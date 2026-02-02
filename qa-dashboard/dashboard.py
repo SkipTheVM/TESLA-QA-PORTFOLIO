@@ -53,9 +53,8 @@ def run_test_suite(suite_name, command):
                 command,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
-                text=True,
+                text=False, # Binary mode
                 bufsize=1,
-                universal_newlines=True,
                 cwd=os.getcwd()
             )
             
@@ -64,7 +63,10 @@ def run_test_suite(suite_name, command):
                 if not line and process.poll() is not None:
                     break
                 if line:
-                    output_queue.put(line.rstrip('\n') + '\n')
+                    line = line.decode('cp1252', errors='replace').rstrip('\n')
+                    # Replace mangled chars with ASCII fallbacks
+                    line = line.replace('â†’', '->').replace('âˆš', 'v').replace('â”Œ', '+').replace('â”€', '-').replace('â”¬', '+').replace('â”‚', '|').replace('â””', '+').replace('â”œ', '+').replace('â”´', '+').replace('â”�', '+').replace('â”¼', '+').replace('â”¤', '+').replace('â”˜', '+').replace('â€¦', '...').replace('â€™', "'").replace('â€', '-').replace('â', '')  # Remove leftover â if any
+                    output_queue.put(line + '\n')
             
             process.stdout.close()
             process.wait(timeout=60)
@@ -88,7 +90,7 @@ def run_test_suite(suite_name, command):
     
     reader_thread.join()
     
-    status = "PASSED"  # Simplified - add return code check if needed
+    status = "PASSED" # Simplified - add return code check if needed
     
     conn = sqlite3.connect('test_runs.db')
     c = conn.cursor()
@@ -104,8 +106,9 @@ def handle_run(data):
     suite = data['suite']
     socketio.emit('run_started', {'suite': suite})
     
+    dashboard_dir = os.path.dirname(os.path.abspath(__file__))
+    
     if suite == "selenium":
-        dashboard_dir = os.path.dirname(os.path.abspath(__file__))
         script_path = os.path.join(dashboard_dir, "..", "Tesla-Selenium-automation", "test_mini_app_ui.py")
         script_path = os.path.normpath(script_path)
         
@@ -124,13 +127,64 @@ def handle_run(data):
             return
         
         command = ["python", script_path]
+        
+        print(f"[DASHBOARD] Executing command: {' '.join(command)}")
+        socketio.emit('log_update', {'suite': suite, 'line': f"Executing: {' '.join(command)}\n"})
+    
+    elif suite == "postman":
+        collection_path = os.path.join(dashboard_dir, "mini_app_postman_test_run.json")
+        collection_path = os.path.normpath(collection_path)
+        
+        print(f"[DASHBOARD] Attempting to run Postman collection:")
+        print(f"[DASHBOARD] Collection path: {collection_path}")
+        print(f"[DASHBOARD] Exists: {os.path.exists(collection_path)}")
+        
+        socketio.emit('log_update', {'suite': suite, 'line': f"Collection path: {collection_path}\n"})
+        socketio.emit('log_update', {'suite': suite, 'line': f"File exists: {os.path.exists(collection_path)}\n"})
+        
+        if not os.path.exists(collection_path):
+            error_msg = "ERROR: Postman collection not found at path!\n"
+            print(error_msg)
+            socketio.emit('log_update', {'suite': suite, 'line': error_msg})
+            socketio.emit('run_complete', {'suite': suite, 'status': "ERROR"})
+            return
+        
+        newman_path = r"C:\Users\jakin\AppData\Roaming\npm\newman.cmd"
+        command = [newman_path, "run", collection_path]
+        
+        print(f"[DASHBOARD] Executing command: {' '.join(command)}")
+        socketio.emit('log_update', {'suite': suite, 'line': f"Executing: {' '.join(command)}\n"})
+    
+    elif suite == "sql":
+        sql_script_path = os.path.join(dashboard_dir, "SQL_validation_results.py")
+        sql_script_path = os.path.normpath(sql_script_path)
+        
+        print(f"[DASHBOARD] Attempting to run SQL script:")
+        print(f"[DASHBOARD] Script path: {sql_script_path}")
+        print(f"[DASHBOARD] Exists: {os.path.exists(sql_script_path)}")
+        
+        socketio.emit('log_update', {'suite': suite, 'line': f"Script path: {sql_script_path}\n"})
+        socketio.emit('log_update', {'suite': suite, 'line': f"File exists: {os.path.exists(sql_script_path)}\n"})
+        
+        if not os.path.exists(sql_script_path):
+            error_msg = "ERROR: SQL script not found at path!\n"
+            print(error_msg)
+            socketio.emit('log_update', {'suite': suite, 'line': error_msg})
+            socketio.emit('run_complete', {'suite': suite, 'status': "ERROR"})
+            return
+        
+        command = ["python", sql_script_path]
+        
+        print(f"[DASHBOARD] Executing command: {' '.join(command)}")
+        socketio.emit('log_update', {'suite': suite, 'line': f"Executing: {' '.join(command)}\n"})
+    
     else:
         command = ["echo", f"Running {suite} (placeholder)"]
-    
-    print(f"[DASHBOARD] Executing command: {' '.join(command)}")
-    socketio.emit('log_update', {'suite': suite, 'line': f"Executing: {' '.join(command)}\n"})
+        print(f"[DASHBOARD] Executing command: {' '.join(command)}")
+        socketio.emit('log_update', {'suite': suite, 'line': f"Executing: {' '.join(command)}\n"})
     
     Process(target=run_test_suite, args=(suite, command)).start()
-
+    
 if __name__ == '__main__':
     socketio.run(app, debug=True, port=5001, allow_unsafe_werkzeug=True)
+
