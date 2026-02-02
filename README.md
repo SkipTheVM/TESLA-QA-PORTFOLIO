@@ -49,6 +49,6 @@ One-click to launch real Selenium UI automation: opens Chrome, adds tasks, asser
 - [Screenshot of dashboard running Selenium tests](qa-dashboard/Dashboard_Selenium_Preview.png)
 - [Screenshot of dashboard running Postman tests (part 1)](qa-dashboard/Dashboard_Postman_Preview1.png)
 - [Screenshot of dashboard running Postman tests (part 2)](qa-dashboard/Dashboard_Postman_Preview2.png)
-- [Screenshot of dashboard running Postman tests](qa-dashboard/Dashboard_SQL_preview.png)
+- [Screenshot of dashboard running SQL tests](qa-dashboard/Dashboard_SQL_preview.png)
 
 Actively Updated: - February 2026
